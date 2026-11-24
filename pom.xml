@@ -2,19 +2,44 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.jimroxodezi</groupId>
   <artifactId>cedar</artifactId>
-  <version>1.0</version>
+  <version>0.1.0-SNAPSHOT</version>
   <properties>
     <maven.compiler.release>25</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.14.0</version>
-      </plugin>
-    </plugins>
+      <finalName>cedar</finalName>
+         <plugins>
+           <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-compiler-plugin</artifactId>
+             <version>3.14.0</version>
+           </plugin>
+           <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-surefire-plugin</artifactId>
+             <version>3.5.2</version>
+           </plugin>
+           <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-shade-plugin</artifactId>
+             <version>3.6.0</version>
+             <executions>
+               <execution>
+                 <phase>package</phase>
+                 <goals><goal>shade</goal></goals>
+                 <configuration>
+                     <createDependencyReducedPom>false</createDependencyReducedPom>
+                   <transformers>
+                     <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                       <mainClass>io.github.jimroxodezi.cedar.Cedar</mainClass>
+                     </transformer>
+                   </transformers>
+                 </configuration>
+               </execution>
+             </executions>
+           </plugin>
+         </plugins>
   </build>
   <dependencies>
       <dependency>
@@ -22,5 +47,11 @@
         <artifactId>picocli</artifactId>
         <version>4.7.7</version>
       </dependency>
+      <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.11.4</version>
+            <scope>test</scope>
+          </dependency>
   </dependencies>
 </project>
