@@ -41,7 +41,7 @@ public final class TemplateEngine {
     * @return resource content as String
  */
     public static String load(String resourcePath) {
-        // Path or File will fail here. this is a resource packages inside the jar.
+        // Path or File will fail here. this is a resource package inside the jar.
         try (InputStream in = TemplateEngine.class.getResourceAsStream(resourcePath)) {
             if (in == null) {
                 throw new IllegalStateException("Missing resource: " + resourcePath);
