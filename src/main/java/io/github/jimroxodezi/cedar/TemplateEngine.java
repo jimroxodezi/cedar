@@ -40,7 +40,7 @@ public final class TemplateEngine {
     * @param resourcePath
     * @return resource content as String
  */
-    public String load(String resourcePath) {
+    public static String load(String resourcePath) {
         // Path or File will fail here. this is a resource packages inside the jar.
         try (InputStream in = TemplateEngine.class.getResourceAsStream(resourcePath)) {
             if (in == null) {
